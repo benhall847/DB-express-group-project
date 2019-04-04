@@ -4,11 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
+    "db:create": "createdb freeBay-app",
+    "db:init": "psql -f schema.sql freeBay-app && psql -f seed.sql freeBay-app",
+    "db:destroy": "dropdb freeBay-app",
+    "db:reset": "npm run db:destroy && npm run db:create && npm run db:init",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
     "express-es6-template-engine": "^2.1.7",
     "express-session": "^1.15.6",
