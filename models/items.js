@@ -57,8 +57,16 @@ class Item {
 
     };
 
-    save() {
+    static add(title, description, photo, id) {
+        return db.any(`
+        insert into items
+            (title, description, photo, claimed, price, user_id)
+        values
+            ($1,$2,$3,'available','free',$4)
+        `, [title, description, photo, id]);
+    };
 
+    save() {
         return db.result(`
         update items set 
             title='${this.title}',
@@ -68,8 +76,7 @@ class Item {
             price = '${this.price}',
             user_id = '${this.user_id}'
         where id = ${this.id}    
-            `
-        );
+        `);
     };
 };
 
