@@ -29,6 +29,7 @@ async function dashboardUpdate(req, res) {
 
         } else {
             const { title, description, photo } = req.body
+            console.log(photo);
             console.log(req.session.user);
             await Item.add(title, description, photo, req.session.user)
 
