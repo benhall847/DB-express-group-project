@@ -31,11 +31,13 @@ class Item {
     static async update(newItem) {
 
         console.log(`inside the updatefunc ${newItem}`);
-        if (newItem.claimed === "claimed") {
-            newItem.claimed = "available"
-        } else {
-            newItem.claimed = "claimed"
-        }
+        (newItem.claimed === "claimed") ? newItem.claimed = "available" : newItem.claimed = "claimed"
+
+        // if (newItem.claimed === "claimed") {
+        //     newItem.claimed = "available"
+        // } else {
+        //     newItem.claimed = "claimed"
+        // }
         console.log(newItem);
         await newItem.save();
     }
