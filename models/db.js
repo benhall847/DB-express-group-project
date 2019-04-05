@@ -1,11 +1,11 @@
 const pgp = require('pg-promise')({
-    query: e=>{
-
+    query: e => {
+        console.log(e);
     }
 });
 
 const options = {
-    host:'localhost',
+    host: 'localhost',
     database: 'freeBay-app'
 };
 const db = pgp(options);

@@ -3,11 +3,12 @@ const Item = require('../models/items');
 async function dashboardGet(req, res) {
 
     const allItems = await Item.getAll()
-
+    const allItemsFiltered = allItems.filter(item => item.claimed === 'available')
+    console.log(allItemsFiltered);
     // console.log(allItems);
     res.render('dashboard', {
         locals: {
-            items: allItems,
+            items: allItemsFiltered,
         }
     })
 }
@@ -19,19 +20,38 @@ async function dashboardUpdate(req, res) {
     console.log(`inside the async ${id}`)
     const update = async (req, res, newItem) => {
         await Item.update(newItem);
-        res.redirect('/dashboard')
     }
     const add = async (req, res) => {
-        const newItem = await Item.getByID(id)
         console.log(`inside the add in dashboardupdate`)
-        if (newItem) {
+        if (id) {
+            const newItem = await Item.getByID(id)
             return update(req, res, newItem)
 
         } else {
-            console.log('added the item')
+            const { title, description, photo } = req.body
+            console.log(req.session.user);
+            await Item.add(title, description, photo, req.session.user)
+
         }
     }
-    add(req, res)
+
+    await add(req, res)
+
+    res.redirect('/dashboard')
+
 }
 
-module.exports = { dashboardGet, dashboardUpdate }
+async function dashboardClaimed(req, res) {
+
+    const allItems = await Item.getAll()
+    const allItemsClaimed = allItems.filter(item => item.claimed === 'claimed')
+    console.log(allItemsClaimed);
+    // console.log(allItems);
+    res.render('dashboardClaimed', {
+        locals: {
+            claimeditems: allItemsClaimed,
+        }
+    })
+}
+
+module.exports = { dashboardGet, dashboardUpdate, dashboardClaimed }
