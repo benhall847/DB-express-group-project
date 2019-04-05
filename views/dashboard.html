@@ -12,12 +12,14 @@
 
 <body>
     <div>
-
+        <div class="d-flex justify-content-center col-12">
+            <h1 class="col-6">Post new item</h1>
+        </div>
         <form action="/dashboard/" method="POST" class="col-12">
             <div class="row">
                 <div class="form-group col-12 d-flex justify-content-center">
-                    <div class="col-3">
-                        <label for="title">title</label>
+                    <div class="col-3 d-flex justify-content-center">
+                        <label class='sr-only' for="title">title</label>
                         <input type="title" name="title" class="form-control" placeholder="Enter title">
                     </div>
                 </div>
@@ -25,24 +27,41 @@
             <div class="row">
                 <div class="form-group col-12 d-flex justify-content-center">
                     <div class="col-3">
-                        <label for="description">description</label>
+                        <label class='sr-only' for="description">description</label>
                         <input type="description" name="description" class="form-control"
                             placeholder="Enter description">
                     </div>
                 </div>
             </div>
+
+
+
             <div class="row">
                 <div class="form-group col-12 d-flex justify-content-center">
                     <div class="col-3">
-                        <label for="photo">photo</label>
+                        <label class='sr-only' for="photo">photo</label>
                         <input type="photo" name="photo" class="form-control" placeholder="Enter photo">
                     </div>
                 </div>
             </div>
 
+            <!-- 
+            <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="inputGroupFile01">
+                      <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                  </div> -->
+
+
+
+
     </div>
     <div class="row col-12 d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary col-3">Submit</button>
+        <button type="submit" class="btn btn-primary col-3">Post item</button>
     </div>
     </form>
 
@@ -54,7 +73,7 @@
                     <h5 class="mb-1">${item.title}</h5>
                 </div>
                 <p class="mb-1">${item.description}</p>
-                <button type="submit" class="btn btn-outline-success">${item.claimed}</button>
+                <button type="submit" class="btn btn-outline-dark">${item.claimed}</button>
         </form>
         `).join(' ')}
     </div>
