@@ -1,7 +1,11 @@
 const Router = require('express').Router;
 const dashboardRoute = Router();
-const dashboardGet = require('../controllers/dashboard');
+const { dashboardGet, dashboardUpdate } = require('../controllers/dashboard');
+const Item = require('../models/items');
 
-dashboardRoute.get('/', dashboardGet)
 
-module.exports = dashboardRoute
+dashboardRoute.get('/', dashboardGet);
+dashboardRoute.post('/:id', dashboardUpdate);
+
+
+module.exports = dashboardRoute;
