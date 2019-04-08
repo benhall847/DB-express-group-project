@@ -28,7 +28,10 @@ async function dashboardUpdate(req, res) {
             return update(req, res, newItem)
 
         } else {
-            const { title, description, photo } = req.body
+            const escapeHTML = require('../utils');
+            const title = escapeHTML(req.body.title)
+            const description = escapeHTML(req.body.description);
+            const photo = escapeHTML(req.body.photo)
             console.log(req.session.user);
             await Item.add(title, description, photo, req.session.user)
 
